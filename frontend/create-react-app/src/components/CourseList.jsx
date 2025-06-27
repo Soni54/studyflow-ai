@@ -81,7 +81,15 @@ const CourseList = () => {
         setUser(currentUser);
 
         const data = await courseService.getAllCourses();
-        setCourses(data);
+         console.log("Fetched courses:", data); // 🧠 Debug what you're getting
+
+if (Array.isArray(data)) {
+  setCourses(data);
+} else {
+  console.error("Unexpected course data:", data);
+  setCourses([]); // fallback to empty array
+}
+        
       } catch (err) {
         setError(err.msg || 'Failed to load courses');
       } finally {
