@@ -135,7 +135,7 @@ console.log("userRole:", userRole);
       {/* 💡 Foreground Main Content */}
       <div className="relative z-10 bg-white bg-opacity-90 p-10 rounded-xl shadow-2xl max-w-5xl mx-auto mt-12">
         <h2 className="text-4xl font-extrabold text-center text-indigo-700 mb-4 animate-fade-in-up">
-          🎓 Welcome to StudyFlow-AI!
+          🎓 Welcome to StudyFlow-AI 🚀!
         </h2>
 
         {!isLoggedIn && (
