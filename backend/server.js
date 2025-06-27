@@ -16,10 +16,21 @@ const noteRoutes = require('./routes/noteRoutes');
 
 const app= express();
 const PORT = process.env.PORT || 5000;
+const allowedOrigins = [
+  'https://studyflow-ai.vercel.app', // your main production frontend
+  'https://studyflow-ohk2afjld-soni-kumaris-projects-b205d6a9.vercel.app', // your preview URL
+  'http://localhost:3000' // dev
+];
 
 const corsOptions = {
-  origin: process.env.CLIENT_URL || 'http://localhost:3000',
-  credentials: true,
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('CORS not allowed from this origin: ' + origin));
+    }
+},
+credentials: true
 };
 
 app.use(cors(corsOptions));
