@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = 'https://studyflow-ai.onrender.com/api/auth';
+const API_URL = `${import.meta.env.VITE_API_URL}/auth`;
 
 const register = async (username, email, password, role = 'student') => {
     try {

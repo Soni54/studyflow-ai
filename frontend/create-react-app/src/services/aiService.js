@@ -1,4 +1,4 @@
-import axios from 'axios';
+/*import axios from 'axios';
 
 const API_URL = '/api/ai';
 
@@ -23,6 +23,24 @@ const getAIChatResponse = async (prompt) => {
 
 const aiService = {
     getAIChatResponse
+};
+
+export default aiService;*/
+
+import api from './api';
+
+const getAIChatResponse = async (prompt) => {
+  try {
+    const response = await api.post('/ai/chat', { prompt });
+    return response.data;
+  } catch (error) {
+    console.error("AI Chat Error:", error.response?.data?.msg || error.message);
+    throw error.response?.data?.msg || 'Failed to get AI response';
+  }
+};
+
+const aiService = {
+  getAIChatResponse
 };
 
 export default aiService;
