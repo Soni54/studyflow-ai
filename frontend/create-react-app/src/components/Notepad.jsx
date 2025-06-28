@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import api from '../services/api';
 
 const Notepad = () => {
   const [notes, setNotes] = useState([]);
@@ -11,7 +11,7 @@ const Notepad = () => {
 
   const fetchNotes = async () => {
     try {
-      const res = await axios.get('/api/notes', {
+      const res = await api.get('/api/notes', {
         headers: { 'x-auth-token': token }
       });
       setNotes(res.data);
@@ -28,11 +28,11 @@ const Notepad = () => {
     e.preventDefault();
     try {
       if (editingId) {
-        await axios.put(`/api/notes/${editingId}`, form, {
+        await api.put(`/api/notes/${editingId}`, form, {
           headers: { 'x-auth-token': token }
         });
       } else {
-        await axios.post('/api/notes', form, {
+        await api.post('/api/notes', form, {
           headers: { 'x-auth-token': token }
         });
       }
@@ -51,7 +51,7 @@ const Notepad = () => {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`/api/notes/${id}`, {
+      await api.delete(`/api/notes/${id}`, {
         headers: { 'x-auth-token': token }
       });
       fetchNotes();
