@@ -375,18 +375,26 @@ if (courseInstructorId !== user._id) {
             setMessage('❌ Please enter a valid YouTube video URL.');
             return;
         }
-
         try {
-            const addedLecture = await courseService.addLecture({
-                courseId: id,
-                ...newLecture,
-                order: lectures.length + 1
-            });
-            setLectures([...lectures, addedLecture]);
-            setMessage('Lecture added successfully!');
-            setNewLecture({ title: '', description: '', videoUrl: '', content: '' });
-            setShowLectureForm(false);
-        } catch (error) {
+         const addedLecture = await courseService.addLecture({
+          courseId: id,
+          ...newLecture,
+             order: lectures.length + 1
+          });
+
+          console.log("Added lecture:", addedLecture);
+
+        if (!addedLecture || !addedLecture._id) {
+       setMessage('Lecture added but no ID returned.');
+       return;
+       }
+
+       setLectures([...lectures, addedLecture]);
+       setMessage('Lecture added successfully!');
+       setNewLecture({ title: '', description: '', videoUrl: '', content: '' });
+       setShowLectureForm(false);
+       } 
+         catch (error) {
             setMessage(error.message || 'Failed to add lecture');
         }
     };
