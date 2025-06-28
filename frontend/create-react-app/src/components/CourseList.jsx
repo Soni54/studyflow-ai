@@ -80,9 +80,11 @@ const CourseList = () => {
         const currentUser = await authService.getCurrentUser(); // ✅ Get current user
         setUser(currentUser);
 
-        const data = await courseService.getAllCourses();
-         console.log("Fetched courses:", data); // 🧠 Debug what you're getting
-            setCourses(data);
+        const response = await courseService.getAllCourses();
+        console.log("VERCEL response:", response);
+        console.log("VERCEL response.data:", response.data);
+         console.log("Fetched courses:", response.data); // 🧠 Debug what you're getting
+            setCourses(response.data);
     } catch (err) {
       console.error("Error fetching courses:", err); // ✅ Debug any issues
       setError(err.msg || 'Failed to load courses');
@@ -117,7 +119,12 @@ const CourseList = () => {
         <p className="text-gray-600 text-lg text-center mt-10">No courses available yet. Check back later!</p>
       ) : (
         <ul className="space-y-4">
-          {courses.map((course) => (
+         
+
+          {!Array.isArray(courses) ? (
+            <p className="text-red-500 text-center">Error: Courses data is not an array.</p>
+          ) : (
+            courses.map((course) => (
             <li
               key={course._id}
               className="border border-gray-300 p-4 rounded-md shadow-sm bg-gray-50"
@@ -144,7 +151,8 @@ const CourseList = () => {
                 Instructor: {course.instructor?.username || 'N/A'}
               </p>
             </li>
-          ))}
+          ))
+      )}
         </ul>
       )}
     </div>
