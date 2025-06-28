@@ -24,6 +24,7 @@ const Register = () => {
       'Register error (frontend):',
       err.response?.data?.msg || err.message
     );
+    console.log("Full error:", err);
     setMessage(err.response?.data?.msg || 'Registration failed.');
         }
     };
