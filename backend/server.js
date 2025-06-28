@@ -18,7 +18,9 @@ const app= express();
 const PORT = process.env.PORT || 5000;
 const allowedOrigins = [
   'https://studyflow-ai.vercel.app', // your main production frontend
-  'https://studyflow-ohk2afjld-soni-kumaris-projects-b205d6a9.vercel.app', // your preview URL
+   'http://localhost:5173',
+    'https://studyflow-pgs7ivn0d-soni-kumaris-projects-b205d6a9.vercel.app',
+  'https://studyflow-ai-git-main-soni-kumaris-projects-b205d6a9.vercel.app',
   'http://localhost:3000' // dev
 ];
 
