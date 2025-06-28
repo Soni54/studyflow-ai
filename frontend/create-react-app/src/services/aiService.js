@@ -30,8 +30,15 @@ export default aiService;*/
 import api from './api';
 
 const getAIChatResponse = async (prompt) => {
+  const token = localStorage.getItem('token');
   try {
-    const response = await api.post('/ai/chat', { prompt });
+    const response = await api.post('/ai/chat', { prompt },
+       {
+        headers: {
+          'x-auth-token': token, // ✅ Include token in headers
+        },
+      }
+    );
     return response.data;
   } catch (error) {
     console.error("AI Chat Error:", error.response?.data?.msg || error.message);
