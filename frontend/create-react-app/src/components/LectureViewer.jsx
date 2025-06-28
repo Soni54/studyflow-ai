@@ -195,7 +195,7 @@ const LectureViewer = () => {
       try {
       const data = await courseService.getLectureById(id);
       console.log('📚 Raw lecture response:', data);
-      setLecture(data);
+      setLecture(data.data);
     } catch (err) {
       console.error(err);
       setError('Failed to load lecture content.');
