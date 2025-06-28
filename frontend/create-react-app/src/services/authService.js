@@ -15,7 +15,8 @@ const register = async (username, email, password, role = 'student') => {
         }
         return response.data;
     } catch (error) {
-        throw error.response?.data?.msg || 'Registration failed';
+        console.error("❌ Register error:", error.response?.data || error.message);
+        throw error;
     }
     
 };
@@ -35,8 +36,8 @@ const login = async (email, password) => {
         }
        return response.data;
     }  catch( error) {
-        console.error("Login error (frontend):", error);
-        throw error.response.data.msg || 'Login failed';
+       console.error("❌ Login error:", error.response?.data || error.message);
+        throw error;
 
     }
 };

@@ -20,12 +20,10 @@ const Register = () => {
             setMessage('Registration Successful! Redirecting to profile..');
             navigate('/profile');
         } catch (err) {
-          console.log(
-      'Register error (frontend):',
-      err.response?.data?.msg || err.message
-    );
-    console.log("Full error:", err);
-    setMessage(err.response?.data?.msg || 'Registration failed.');
+          const errorMsg =
+        err.response?.data?.msg || err.response?.data?.message || err.message || 'Something went wrong';
+         console.log("Register error (frontend):", errorMsg);
+        setMessage(errorMsg);
         }
     };
     

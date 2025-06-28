@@ -3,11 +3,13 @@ import { Link } from "react-router-dom";
 import courseService from "../services/courseService";
 import authService from "../services/authService";
 
+
 const RecommendedCourses = () => {
     const [recommendations, setRecommendations] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState('');
     const [isStudent, setIsStudent] = useState(false);
+  console.log('Fetched recommendations:', recommendations);
 
     useEffect(() => {
 
