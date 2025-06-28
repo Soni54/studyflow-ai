@@ -13,12 +13,18 @@ const Register = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         setMessage('');
+        console.log("Submitting:", { username, email, password, role });
+
         try {
             await authService.register(username, email, password, role);
             setMessage('Registration Successful! Redirecting to profile..');
             navigate('/profile');
-        } catch (error) {
-            setMessage(error);
+        } catch (err) {
+          console.log(
+      'Register error (frontend):',
+      err.response?.data?.msg || err.message
+    );
+    setMessage(err.response?.data?.msg || 'Registration failed.');
         }
     };
     
