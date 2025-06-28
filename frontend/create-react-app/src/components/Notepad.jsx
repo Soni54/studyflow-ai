@@ -11,7 +11,7 @@ const Notepad = () => {
 
   const fetchNotes = async () => {
     try {
-      const res = await api.get('/api/notes', {
+      const res = await api.get('/notes', {
         headers: { 'x-auth-token': token }
       });
       setNotes(res.data);
@@ -28,11 +28,11 @@ const Notepad = () => {
     e.preventDefault();
     try {
       if (editingId) {
-        await api.put(`/api/notes/${editingId}`, form, {
+        await api.put(`/notes/${editingId}`, form, {
           headers: { 'x-auth-token': token }
         });
       } else {
-        await api.post('/api/notes', form, {
+        await api.post('/notes', form, {
           headers: { 'x-auth-token': token }
         });
       }
@@ -51,7 +51,7 @@ const Notepad = () => {
 
   const handleDelete = async (id) => {
     try {
-      await api.delete(`/api/notes/${id}`, {
+      await api.delete(`/notes/${id}`, {
         headers: { 'x-auth-token': token }
       });
       fetchNotes();
