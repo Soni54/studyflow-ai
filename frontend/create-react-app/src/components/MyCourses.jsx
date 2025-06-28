@@ -85,9 +85,17 @@ const MyCourses = () => {
             }
 
             try {
-                const data = await courseService.getMyEnrolledCourses();
-                setEnrolledCourses(data);
-            } catch (err) {
+                const response = await courseService.getMyEnrolledCourses();
+                console.log("Fetched enrolled courses:", response); // ✅ Debug log
+             if (Array.isArray(response.data)) {
+                setEnrolledCourses(response.data);
+            } else{
+               console.error("Expected array but got:", response.data);
+              setEnrolledCourses([]);
+            }
+          }
+              catch (err) {
+                console.error("Error fetching enrolled courses:", err);
                 setError(err?.response?.data?.msg || 'Failed to load your enrolled courses');
             } finally {
                 setLoading(false);
