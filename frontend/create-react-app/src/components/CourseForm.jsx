@@ -345,14 +345,19 @@ if (courseInstructorId !== user._id) {
         setMessage('');
         try {
             const courseData = { title, description };
-            if (id) {
-                await courseService.updateCourse(id, courseData);
-                setMessage('Course updated successfully!');
-            } else {
-                const newCourse = await courseService.createCourse(courseData);
-                setMessage('Course created successfully!');
-                navigate(`/courses/${newCourse._id}/edit`);
-            }
+           if (id) {
+  await courseService.updateCourse(id, courseData);
+  setMessage('Course updated successfully!');
+} else {
+  const newCourse = await courseService.createCourse(courseData);
+  if (newCourse && newCourse._id) {
+    setMessage('Course created successfully!');
+    navigate(`/courses/${newCourse._id}/edit`);
+  } else {
+    setMessage('Failed to get course ID after creation');
+  }
+}
+
         } catch (error) {
             setMessage(error.message || 'Failed to submit course');
         }
