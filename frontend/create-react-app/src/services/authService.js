@@ -1,10 +1,12 @@
-import axios from 'axios';
+import api from './api';
 
+console.log('VITE_API_URL:', import.meta.env.VITE_API_URL);
 const API_URL = `${import.meta.env.VITE_API_URL}/auth`;
+
 
 const register = async (username, email, password, role = 'student') => {
     try {
-        const response = await axios.post(`${API_URL}/register`,{ username, email, password, role});
+        const response = await api.post(`/auth/register`,{ username, email, password, role});
 
         if (response.data.token) {
             localStorage.setItem('token',response.data.token);
@@ -20,7 +22,7 @@ const register = async (username, email, password, role = 'student') => {
 
 const login = async (email, password) => {
     try{
-        const response = await axios.post(`${API_URL}/login`, {email, password});
+        const response = await api.post(`/auth/login`, {email, password});
         if (response.data.token) {
             localStorage.setItem ('token', response.data.token);
             // 🔥 Extract role from JWT and save it
@@ -67,7 +69,7 @@ const fetchUserProfile = async () => {
     const token = getToken();
     if (!token) return null;
     try {
-        const response = await axios.get(`${API_URL}/profile`, {
+        const response = await api.get(`/auth/profile`, {
             headers: { 'x-auth-token': token }
         });
         return response.data;
