@@ -6,4 +6,13 @@ const instance = axios.create({
   withCredentials: true,
 });
 
+// 🛡️ Attach token to every request if exists
+instance.interceptors.request.use((config) => {
+  const token = localStorage.getItem('token');
+  if (token) {
+    config.headers['x-auth-token'] = token;
+  }
+  return config;
+});
+
 export default instance;
