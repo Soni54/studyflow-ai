@@ -376,12 +376,12 @@ if (courseInstructorId !== user._id) {
             return;
         }
         try {
-         const addedLecture = await courseService.addLecture({
+         const res = await courseService.addLecture({
           courseId: id,
           ...newLecture,
              order: lectures.length + 1
           });
-
+           const addedLecture = res.data;
           console.log("Added lecture:", addedLecture);
 
         if (!addedLecture || !addedLecture._id) {
