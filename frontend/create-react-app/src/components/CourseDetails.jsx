@@ -169,7 +169,10 @@ const CourseDetails = () => {
                 setCourse(response.data);
                      
                  if (currentRole === 'student' && authService.isLoggedIn()) {
-                    const enrolledCourses = await courseService.getMyEnrolledCourses();
+                    const enrolledRes = await courseService.getMyEnrolledCourses();
+                    console.log("Enrolled courses response:", enrolledRes); // debug
+
+                    const enrolledCourses = enrolledRes.data; // ✅ extract .data array
                     setIsEnrolled(enrolledCourses.some(c => c._id === id));
                 }
 
