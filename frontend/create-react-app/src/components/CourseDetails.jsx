@@ -164,8 +164,9 @@ const CourseDetails = () => {
                 const currentRole = userData ? userData.role : null;
                 setUserRole(currentRole);
 
-                const data = await courseService.getCourseById(id);
-                setCourse(data);
+                const response = await courseService.getCourseById(id);
+                console.log("Course details response:", response);
+                setCourse(response.data);
                      
                  if (currentRole === 'student' && authService.isLoggedIn()) {
                     const enrolledCourses = await courseService.getMyEnrolledCourses();
