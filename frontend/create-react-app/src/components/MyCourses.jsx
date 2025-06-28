@@ -86,6 +86,7 @@ const MyCourses = () => {
 
             try {
                 const response = await courseService.getMyEnrolledCourses();
+                  console.log("⚠️ Full response from /enrollments/my-courses:", response);
                 console.log("Fetched enrolled courses:", response); // ✅ Debug log
              if (Array.isArray(response.data)) {
                 setEnrolledCourses(response.data);
