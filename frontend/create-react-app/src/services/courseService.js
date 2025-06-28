@@ -174,7 +174,10 @@ const unenrollCourse = (id) => api.post(`/enrollments/unenroll/${id}`, {}, { hea
 const getMyEnrolledCourses = () => api.get('/enrollments/my-courses', { headers: authHeader() });
 
 // Recommendations
-const getRecommendedCourses = () => api.get('/recommendations/courses', { headers: authHeader() });
+const getRecommendedCourses = async () => {
+  const res = await api.get('/recommendations/courses', { headers: authHeader() });
+  return res.data; // ✅ Now it's already an array
+};
 
 export default {
   createCourse,
