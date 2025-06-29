@@ -172,6 +172,25 @@ if (courseInstructorId !== user._id) {
                     {id ? 'Update Course Info' : 'Create Course'}
                 </button>
             </form>
+             
+             {id && (
+  <button
+    onClick={async () => {
+      if (window.confirm("Are you sure you want to delete this course?")) {
+        try {
+          await courseService.deleteCourse(id);
+          alert("Course deleted successfully.");
+          navigate("/courses");
+        } catch (err) {
+          alert(err.message || "Failed to delete course.");
+        }
+      }
+    }}
+    className="w-full mt-4 bg-red-600 hover:bg-red-700 text-white py-2 px-4 rounded"
+  >
+    🗑️ Delete Course
+  </button>
+)}
 
             {id && (
                 <>
