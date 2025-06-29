@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import axios from 'axios';
+import api from '../services/api';
 
 const QuizTaker = () => {
   const { id } = useParams();
@@ -14,11 +14,7 @@ const QuizTaker = () => {
     const fetchQuiz = async () => {
       try {
          const token = localStorage.getItem('token'); 
-        const res = await axios.get(`http://localhost:5000/api/quizzes/${id}`,{
-          headers: {
-        'x-auth-token': token,  
-        },
-    });
+        const res = await api.get(`/quizzes/${id}`);
         setQuiz(res.data);
       } catch (err) {
         setError('Failed to load quiz');
