@@ -106,34 +106,36 @@ const CourseDetails = () => {
 
     {/* Edit button for instructor */}
     {userRole === "instructor" &&
-      course.instructor._id ===
-        authService.getCurrentUser()?._id && (
-          <div className="flex gap-4 mb-4">
-        <Link to={`/courses/${course._id}/edit`}>
-          <button className="bg-yellow-500 hover:bg-yellow-600 text-white px-4 py-2 rounded-full mb-4 transition">
-            ✏️ Edit Course
-          </button>
-        </Link>
+  course.instructor._id ===
+    (authService.getCurrentUser() && authService.getCurrentUser()._id) && (
+    <>
+      <Link to={`/courses/${course._id}/edit`}>
+        <button className="bg-yellow-500 hover:bg-yellow-600 text-white px-4 py-2 rounded-full mb-4 transition">
+          ✏️ Edit Course
+        </button>
+      </Link>
+
+      {/* ✅ Add this Delete Button */}
       <button
         onClick={async () => {
-          if (window.confirm("Are you sure you want to delete this course?")) {
-            try {
-              await courseService.deleteCourse(course._id);
-              alert("Course deleted successfully!");
-              navigate("/courses");
-            } catch (err) {
-              alert("Failed to delete course.");
-            }
+          const confirmDelete = window.confirm("Are you sure you want to delete this course?");
+          if (!confirmDelete) return;
+
+          try {
+            await courseService.deleteCourse(course._id);
+            alert("✅ Course deleted successfully!");
+            navigate("/courses"); // Redirect to course list
+          } catch (err) {
+            alert("❌ Failed to delete course. " + (err?.response?.data?.msg || err.message));
           }
         }}
-        className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-full transition"
+        className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-full mb-4 ml-4 transition"
       >
         🗑️ Delete Course
       </button>
-    </div>
-      )}
+    </>
+)}
 
-     
     {/* Enroll/Unenroll buttons for students */}
     {userRole === "student" && (
       isEnrolled ? (
