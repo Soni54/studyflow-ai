@@ -96,7 +96,7 @@ const AIChatbot = () => {
 
     return (
         <div className="p-5 border border-gray-300 rounded-lg mt-5 max-w-xl mx-auto bg-white shadow">
-            <h3 className="text-xl font-bold mb-4 text-center">AI Chatbot - Your Virtual Tutor</h3>
+            <h3 className="text-xl font-bold mb-4 text-center text-gray-800">AI Chatbot - Your Virtual Tutor</h3>
             <div className="h-72 overflow-y-auto border border-gray-200 p-3 mb-4 bg-gray-50 rounded">
                 {chatHistory.length === 0 && (
                     <p className="text-center text-gray-700">Ask me anything about your studies!</p>
