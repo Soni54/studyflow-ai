@@ -1,147 +1,4 @@
-// frontend/src/components/CourseDetails.js
-/*import React, { useEffect, useState } from 'react';
-import { useParams, Link , useNavigate} from 'react-router-dom';
-import courseService from '../services/courseService';
-import authService from '../services/authService';
 
-const CourseDetails = () => {
-    const { id } = useParams();
-    const [course, setCourse] = useState(null);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState('');
-    const [userRole, setUserRole] = useState(null);
-    const [isEnrolled, setIsEnrolled] = useState(false); // NEW state for enrollment status
-    const navigate = useNavigate();
-
-    useEffect(() => {
-        const fetchCourseAndStatus = async () => {
-            try {
-                const userData = await authService.getCurrentUser();
-                const currentRole = userData ? userData.role : null;
-                setUserRole(currentRole);
-
-                const data = await courseService.getCourseById(id);
-                setCourse(data);
-                     
-                 if (currentRole === 'student' && authService.isLoggedIn()) {
-                    const enrolledCourses = await courseService.getMyEnrolledCourses();
-                    setIsEnrolled(enrolledCourses.some(c => c._id === id));
-                }
-
-            } catch (err) {
-                setError(err?.response?.data?.msg || 'Failed to load course details');
-            } finally {
-                setLoading(false);
-            }
-        };
-        fetchCourseAndStatus();
-    }, [id]);
-
-      const handleEnroll = async () => {
-        if (!authService.isLoggedIn()) {
-            navigate('/login'); // Redirect to login if not logged in
-            return;
-        }
-        try {
-            await courseService.enrollCourse(id);
-            setIsEnrolled(true);
-            alert('Successfully enrolled!');
-        } catch (err) {
-            alert(err);
-        }
-    };
-
-    const handleUnenroll = async () => {
-        if (!authService.isLoggedIn()) {
-            navigate('/login');
-            return;
-        }
-        try {
-            await courseService.unenrollCourse(id);
-            setIsEnrolled(false);
-            alert('Successfully unenrolled!');
-        } catch (err) {
-            alert(err);
-        }
-    };
-
-    if (loading) {
-        return (
-           <div className="flex justify-center items-center h-64">
-        <p className="text-gray-600 text-lg">Loading course details...</p>
-      </div> 
-        );//<div>Loading course details...</div>;
-    }
-
-    if (error) {
-        return (
-            <div className="max-w-4xl mx-auto mt-8 p-4 bg-red-100 text-red-700 rounded-md shadow-sm">
-        <p>{error}</p>
-      </div>
-        );//<div style={{ color: 'red' }}>Error: {error}</div>;
-    }
-
-    if (!course) {
-        return(
-         <div className="max-w-4xl mx-auto mt-8 p-4 bg-yellow-100 text-yellow-700 rounded-md shadow-sm">
-        <p>Course not found.</p>
-      </div>   
-        );// <div>Course not found.</div>;
-    }
-
-    return (
-        <div>
-            <h2>{course.title}</h2>
-            <p><strong>Description:</strong> {course.description}</p>
-            <p><strong>Instructor:</strong> {course.instructor ? course.instructor.username : 'N/A'}</p>
-
-            {userRole === 'instructor' && course.instructor._id === (authService.getCurrentUser() && authService.getCurrentUser()._id) && (
-                <Link to={`/courses/${course._id}/edit`}>
-                    <button>Edit Course</button>
-                </Link>
-            )}
-              {userRole === 'student' && (
-                isEnrolled ? (
-                    <button onClick={handleUnenroll} style={{ backgroundColor: 'orange', color: 'white' }}>Unenroll</button>
-                ) : (
-                    <button onClick={handleEnroll} style={{ backgroundColor: 'green', color: 'white' }}>Enroll</button>
-                )
-              )}
-
-            <hr />
-
-            <h3>Lectures ({course.lectures.length})</h3>
-            {course.lectures.length === 0 ? (
-                <p className="text-gray-600 text-lg text-center">No lectures available yet.</p>
-            ) : (
-                <ul>
-                    {course.lectures.map((lecture) => (
-                        <li key={lecture._id}>
-                            <Link to={`/lectures/${lecture._id}`}>{lecture.title}</Link> (Order: {lecture.order})
-                            // In a real app, link to a LectureViewer component 
-                        </li>
-                    ))}
-                </ul>
-            )}
-
-            <h3>Quizzes ({course.quizzes.length})</h3>
-            {course.quizzes.length === 0 ? (
-                <p className="text-gray-600 text-lg text-center">No quizzes available yet.</p>
-            ) : (
-                <ul>
-                    {course.quizzes.map((quiz) => (
-                        <li key={quiz._id}>
-                            <Link to={`/quizzes/${quiz._id}`}>{quiz.title}</Link>
-                            // In a real app, link to a QuizTaker component 
-                        </li>
-                    ))}
-                </ul>
-            )}
-        </div>
-    );
-};
-
-export default CourseDetails;*/
 
 import React, { useEffect, useState } from 'react';
 import { useParams, Link , useNavigate} from 'react-router-dom';
@@ -250,15 +107,33 @@ const CourseDetails = () => {
     {/* Edit button for instructor */}
     {userRole === "instructor" &&
       course.instructor._id ===
-        (authService.getCurrentUser() &&
-          authService.getCurrentUser()._id) && (
+        authService.getCurrentUser()?._id && (
+          <div className="flex gap-4 mb-4">
         <Link to={`/courses/${course._id}/edit`}>
           <button className="bg-yellow-500 hover:bg-yellow-600 text-white px-4 py-2 rounded-full mb-4 transition">
             ✏️ Edit Course
           </button>
         </Link>
+      <button
+        onClick={async () => {
+          if (window.confirm("Are you sure you want to delete this course?")) {
+            try {
+              await courseService.deleteCourse(course._id);
+              alert("Course deleted successfully!");
+              navigate("/courses");
+            } catch (err) {
+              alert("Failed to delete course.");
+            }
+          }
+        }}
+        className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-full transition"
+      >
+        🗑️ Delete Course
+      </button>
+    </div>
       )}
 
+     
     {/* Enroll/Unenroll buttons for students */}
     {userRole === "student" && (
       isEnrolled ? (
