@@ -1,69 +1,4 @@
-// frontend/src/components/MyCourses.js
-/*import React, { useEffect, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import courseService from '../services/courseService';
-import authService from '../services/authService';
 
-const MyCourses = () => {
-    const [enrolledCourses, setEnrolledCourses] = useState([]);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState('');
-    const navigate = useNavigate();
-
-    useEffect(() => {
-        const fetchMyCourses = async () => {
-            const user = await authService.getCurrentUser();
-            if (!user || user.role !== 'student') {
-                navigate('/login'); // Redirect if not logged in as student
-                return;
-            }
-
-            try {
-                const data = await courseService.getMyEnrolledCourses();
-                setEnrolledCourses(data);
-            } catch (err) {
-                setError(err?.response?.data?.msg || 'Failed to load your enrolled courses');
-            } finally {
-                setLoading(false);
-            }
-        };
-        fetchMyCourses();
-    }, [navigate]);
-
-    if (loading) {
-       // return <div>Loading your courses...</div>;
-        return (
-            <div className="flex justify-center items-center h-48">
-                <p className="text-gray-600 text-lg">Loading your courses...</p>
-            </div>
-        );
-    }
-
-    if (error) {
-        return <div style={{ color: 'red' }}>Error: {error}</div>;
-    }
-
-    return (
-        <div className="max-w-6xl mx-auto my-8 p-6 bg-white rounded-lg shadow-xl">
-            <h2 className="text-4xl font-extrabold text-gray-900 mb-8 text-center">My Enrolled Courses</h2>
-            {enrolledCourses.length === 0 ? (
-                <p className="text-gray-600 text-lg text-center mt-10">You haven't enrolled in any courses yet. <Link to="/courses" className="text-blue-600 hover:underline">Browse available courses</Link>!</p>
-            ) : (
-                <ul>
-                    {enrolledCourses.map((course) => (
-                        <li key={course._id} style={{ border: '1px solid #ccc', padding: '10px', margin: '10px 0' }}>
-                            <h3><Link to={`/courses/${course._id}`} className="flex-1 bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-md text-center transition-colors duration-200">{course.title}</Link></h3>
-                            <p className="text-gray-700 text-base mb-4 line-clamp-3">{course.description}</p>
-                            <p className="text-gray-500 text-sm mt-2">Instructor: {course.instructor ? course.instructor.username : 'N/A'}</p>
-                        </li>
-                    ))}
-                </ul>
-            )}
-        </div>
-    );
-};
-
-export default MyCourses; */ 
 
 import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
@@ -109,7 +44,7 @@ const MyCourses = () => {
        // return <div>Loading your courses...</div>;
         return (
             <div className="flex justify-center items-center h-48">
-                <p className="text-gray-600 text-lg">Loading your courses...</p>
+                <p className="text-white text-lg font-semibold drop-shadow-md animate-pulse">Loading your courses...</p>
             </div>
         );
     }

@@ -34,7 +34,7 @@ const CourseList = () => {
   if (loading) {
     return (
       <div className="flex justify-center items-center h-64">
-        <p className="text-gray-600 text-lg">Loading courses...</p>
+        <p className="text-white text-lg font-semibold drop-shadow-md animate-pulse">Loading courses...</p>
       </div>
     );
   }
