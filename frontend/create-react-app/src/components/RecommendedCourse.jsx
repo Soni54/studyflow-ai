@@ -47,7 +47,7 @@ const RecommendedCourses = () => {
         return <div style={{ color: 'gray', fontStyle: 'italic' }}>No new recommendations at the moment. Explore more courses!</div>;
     }
     return (
-        <div style={{ marginTop: '30px', borderTop: '1px solid #eee', paddingTop: '20px' }}>
+        <div style={{ marginTop: '30px', borderTop: '1px solid #eee', paddingTop: '20px', color:'black' }}>
             <h3>✨ Recommended For You ✨</h3>
             <ul>
                 {recommendations.map((course) => (
