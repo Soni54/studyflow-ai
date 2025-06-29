@@ -147,7 +147,7 @@ if (courseInstructorId !== user._id) {
     console.log("🎯 Lectures to render:", lectures);
     return (
         <div className="max-w-xl mx-auto mt-10 p-8 bg-white rounded-lg shadow-xl">
-            <h2 className="text-2xl font-bold mb-4">{id ? 'Edit Course' : 'Create New Course'}</h2>
+            <h2 className="text-2xl font-bold mb-4 text-gray-800">{id ? 'Edit Course' : 'Create New Course'}</h2>
             <form onSubmit={handleSubmitCourse} className="space-y-6">
                 <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1">Title:</label>
@@ -198,7 +198,7 @@ if (courseInstructorId !== user._id) {
 
                     {/* LECTURES */}
                     <div className="mt-10">
-                        <h3 className="text-xl font-semibold">Lectures</h3>
+                        <h3 className="text-xl font-semibold text-gray-800">Lectures</h3>
                         <button
                             className="mt-2 mb-4 bg-green-600 hover:bg-green-700 text-white py-1 px-3 rounded"
                             onClick={() => setShowLectureForm(!showLectureForm)}
@@ -244,7 +244,7 @@ if (courseInstructorId !== user._id) {
                                 </button>
                             </form>
                         )}
-                            <h3 className="mt-6 text-lg font-semibold">Quizzes</h3>
+                            <h3 className="mt-6 text-lg font-semibold text-gray-800">Quizzes</h3>
 <button onClick={() => setShowQuizForm(true)} className="bg-purple-600 text-white px-4 py-2 rounded">Add New Quiz</button>
 
 {showQuizForm && (
@@ -306,7 +306,7 @@ if (courseInstructorId !== user._id) {
               updatedLectures[index].title = e.target.value;
               setLectures(updatedLectures);
             }}
-            className="w-full border-b border-gray-300 focus:outline-none focus:border-blue-500 text-lg font-medium bg-transparent"
+            className="w-full border-b border-gray-300 focus:outline-none focus:border-blue-500 text-lg font-medium bg-transparent text-gray-800"
           />
           <p className="text-sm text-gray-500">Order: {lecture.order}</p>
         </div>
