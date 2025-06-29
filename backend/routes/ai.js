@@ -1,5 +1,4 @@
 const express = require('express');
-console.log("Gemini Key:", process.env.GEMINI_API_KEY);
 const router = express.Router();
 const { GoogleGenerativeAI} = require('@google/generative-ai');
 const auth = require('../middleware/auth');

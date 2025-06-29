@@ -114,7 +114,7 @@ router.delete('/:id', auth, authorize('instructor'), async (req, res) => {
         }
 
         // Check if the logged-in user is the instructor of this course
-        if (course.instructor.toString() !== req.user.id) {
+        if (String(course.instructor?._id || course.instructor) !== req.user.id) {
             return res.status(401).json({ msg: 'User not authorized to delete this course' });
         }
 
