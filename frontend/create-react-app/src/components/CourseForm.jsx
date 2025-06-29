@@ -173,6 +173,8 @@ if (courseInstructorId !== user._id) {
 
             {id && (
                 <>
+                console.log("🎯 Lectures to render:", lectures);
+
                     {/* LECTURES */}
                     <div className="mt-10">
                         <h3 className="text-xl font-semibold">Lectures</h3>
@@ -267,7 +269,10 @@ if (courseInstructorId !== user._id) {
 
                         <ul className="mt-4 space-y-4">
   {lectures.map((lecture, index) => {
-    if (!lecture || !lecture._id) return null;
+    if (!lecture || !lecture._id){
+       console.warn("❌ Skipping invalid lecture:", lecture); 
+     return null;
+    }
     return(
     <li key={lecture._id} className="border p-4 rounded shadow-sm bg-gray-50">
       <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2">
