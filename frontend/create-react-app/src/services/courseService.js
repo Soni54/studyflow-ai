@@ -157,7 +157,11 @@ const createCourse = async (courseData) => {
 };
 
 const getAllCourses = () => api.get('/courses', { headers: authHeader() });
-const getCourseById = (id) => api.get(`/courses/${id}`, { headers: authHeader() });
+const getCourseById = async (id) => {
+  const res = await api.get(`/courses/${id}`, { headers: authHeader() });
+  return res.data;
+};
+
 const updateCourse = (id, data) => api.put(`/courses/${id}`, data, { headers: authHeader() });
 const deleteCourse = (id) => api.delete(`/courses/${id}`, { headers: authHeader() });
 
