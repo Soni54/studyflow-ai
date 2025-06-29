@@ -89,7 +89,7 @@ const Notepad = () => {
       <div className="grid gap-4">
         {notes.map(note => (
           <div key={note._id} className="border p-4 rounded shadow-sm bg-gray-50">
-            <h3 className="text-lg font-semibold">{note.title}</h3>
+            <h3 className="text-lg font-semibold text-gray-800">{note.title}</h3>
             <p className="text-gray-700 whitespace-pre-line">{note.content}</p>
             <div className="mt-2 flex gap-2">
               <button
