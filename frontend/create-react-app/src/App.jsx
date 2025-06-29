@@ -13,7 +13,7 @@ import MyCourses from "./components/MyCourses";
 import AIChatbot from "./components/AIChatbot";
 import Notepad from './components/Notepad';
 import QuizTaker from "./components/QuizTaker";
-
+import Layout from "./components/Layout";
 import authService from "./services/authService";
 
 
@@ -198,24 +198,24 @@ console.log("userRole:", userRole);
   }
 />
              
-        <Route path="/register" element={<Register />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/profile" element={<Profile />} />
+        <Route path="/register" element={<Layout><Register /></Layout>} />
+        <Route path="/login" element={<Layout><Login /></Layout>} />
+        <Route path="/profile" element={<Layout><Profile /></Layout>} />
         
 
 
         {/* Course Routes */}
-        <Route path="/courses" element={<CourseList />} />
-        <Route path="/courses/:id" element={<CourseDetails />} />
-        <Route path="/create-course" element={<CourseForm />} /> {/* For creating new course */}
-        <Route path="/courses/:id/edit" element={<CourseForm />} /> {/* For editing existing course */}
+        <Route path="/courses" element={<Layout><CourseList /></Layout>} />
+        <Route path="/courses/:id" element={<Layout><CourseDetails /></Layout>} />
+        <Route path="/create-course" element={<Layout><CourseForm /></Layout>} /> {/* For creating new course */}
+        <Route path="/courses/:id/edit" element={<Layout><CourseForm /></Layout>} /> {/* For editing existing course */}
 
         {/* Lecture & Quiz Viewers (simple placeholders) */}
-        <Route path="/lectures/:id" element={<LectureViewer />} />
-        <Route path="/my-courses" element={<MyCourses />} />
-        <Route path="/ai-chatbot" element={<AIChatbot />} />
-        <Route path="/notepad" element={<Notepad />} />
-        <Route path="/quizzes/:id" element={<QuizTaker />} />
+        <Route path="/lectures/:id" element={<Layout><LectureViewer /></Layout>} />
+        <Route path="/my-courses" element={<Layout><MyCourses /></Layout>} />
+        <Route path="/ai-chatbot" element={<Layout><AIChatbot /></Layout>} />
+        <Route path="/notepad" element={<Layout><Notepad /></Layout>} />
+        <Route path="/quizzes/:id" element={<Layout><QuizTaker /></Layout>} />
 
         {/* You'd add a /quizzes/:id route and a QuizTaker component here later */}
       </Routes>
