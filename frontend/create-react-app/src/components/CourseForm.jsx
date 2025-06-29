@@ -91,6 +91,7 @@ if (courseInstructorId !== user._id) {
 
     const handleAddLecture = async (e) => {
         e.preventDefault();
+        setMessage('');
         if (!id) {
             setMessage('Please create the course first.');
             return;
@@ -107,7 +108,7 @@ if (courseInstructorId !== user._id) {
           ...newLecture,
              order: lectures.length + 1
           });
-           const addedLecture = res.data;
+           const addedLecture = res?.data?._id ? res.data : res.data?.lecture || null;
           console.log("Added lecture:", addedLecture);
 
         if (!addedLecture || !addedLecture._id) {
@@ -121,6 +122,7 @@ if (courseInstructorId !== user._id) {
        setShowLectureForm(false);
        } 
          catch (error) {
+            console.error("🚨 Failed to add lecture:", error);
             setMessage(error.message || 'Failed to add lecture');
         }
     };
