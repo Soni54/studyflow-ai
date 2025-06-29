@@ -71,6 +71,7 @@ const Profile = () => {
 
     return (
         // Main container for the profile: centered, padded, rounded, shadowed
+        <div className="min-h-screen w-full bg-gradient-to-r from-purple-500 via-pink-500 to-indigo-500 animate-gradient-x bg-[length:200%_200%] overflow-x-hidden px-4 sm:px-6 lg:px-8">
         <div className="max-w-xl mx-auto my-8 p-8 bg-white rounded-lg shadow-xl">
             <h2 className="text-4xl font-extrabold text-gray-900 mb-6 text-center">User Profile</h2>
 
@@ -96,6 +97,7 @@ const Profile = () => {
                     Logout
                 </button>
             </div>
+        </div>
         </div>
     );
 };
