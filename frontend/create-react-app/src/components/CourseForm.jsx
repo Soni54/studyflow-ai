@@ -54,7 +54,7 @@ if (courseInstructorId !== user._id) {
 
                     setTitle(courseData.title);
                     setDescription(courseData.description);
-                    setLectures(courseData.lectures || []);
+                    setLectures((courseData.lectures || []).filter(l => l && l._id));
                     setQuizzes(courseData.quizzes || []);
                 }
             } catch (error) {
@@ -142,7 +142,7 @@ if (courseInstructorId !== user._id) {
     };
 
     if (loading) return <p>Loading...</p>;
-
+    console.log("🎯 Lectures to render:", lectures);
     return (
         <div className="max-w-xl mx-auto mt-10 p-8 bg-white rounded-lg shadow-xl">
             <h2 className="text-2xl font-bold mb-4">{id ? 'Edit Course' : 'Create New Course'}</h2>
@@ -173,7 +173,7 @@ if (courseInstructorId !== user._id) {
 
             {id && (
                 <>
-                console.log("🎯 Lectures to render:", lectures);
+              
 
                     {/* LECTURES */}
                     <div className="mt-10">
