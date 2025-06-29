@@ -67,7 +67,7 @@ console.log("userRole:", userRole);
 
   return (
     
-     <div className="w-screen min-h-screen p-5 bg-gradient-to-r from-purple-500 via-pink-500 to-indigo-500 animate-gradient-x bg-[length:200%_200%]">
+     <div className="w-screen min-h-[100dvh] p-5 bg-gradient-to-r from-purple-500 via-pink-500 to-indigo-500 animate-gradient-x bg-[length:200%_200%] bg-no-repeat bg-cover">
 
       <nav className="bg-gray-800 p-4 rounded-lg shadow-md mb-8">
         <ul className="flex items-center space-x-6 text-white" >

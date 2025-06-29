@@ -1,54 +1,4 @@
-/*import React, {useEffect, useState} from "react";
-import { useNavigate } from "react-router-dom";
-import authService from "../services/authService";
 
-const Profile = () => {
-    const [user, setUser] =useState(null);
-    const [message, setMessage] = useState('');
-    const navigate = useNavigate();
-
-    useEffect(() => {
-        const fetchProfile = async () => {
-            if (!authService.isLoggedIn()) {
-                navigate('/login'); // lowercase for consistency
-                return;
-            }
-
-            try {
-                const fullProfile = await authService.fetchUserProfile(); // ✅ use this
-                console.log('Full Profile:', fullProfile);
-                setUser(fullProfile);
-            } catch (error) {
-                setMessage(error);
-                authService.logout();
-                navigate('/login');
-            }
-        };
-
-        fetchProfile();
-    }, [navigate]);
-
-    const handleLogout = () => {
-        authService.logout();
-        navigate('/login');
-    };
-
-    if (!user) {
-        return <div>{message || 'Loading profile..'}</div>;
-    }
-
-    return (
-        <div>
-            <h2>User Profile</h2>
-            <p>Welcome, {user.username}!</p>
-            <p>Email: {user.email}</p>
-            <p>Role: {user.role}</p>
-            <button onClick={handleLogout}>Logout</button>
-        </div>
-    );
-    };
-
-    export default Profile;*/
 // frontend/src/components/Profile.jsx
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -95,7 +45,7 @@ const Profile = () => {
     if (loading) {
         return (
             <div className="flex justify-center items-center h-64">
-                <p className="text-gray-600 text-lg">Loading profile...</p>
+                <p className="text-white text-lg font-semibold drop-shadow-md animate-pulse">Loading profile...</p>
             </div>
         );
     }
