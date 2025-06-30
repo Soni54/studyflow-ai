@@ -34,7 +34,7 @@ if (user.role === 'instructor') {
     };
 
     return (
-        <div className="max-w-md mx-auto mt-10 p-8 bg-cyan rounded-lg shadow-xl">
+        <div className="max-w-md mx-auto mt-10 p-8 bg-black rounded-lg shadow-xl">
             <h1 className="text-3xl font-extrabold text-gray-900 mb-6 text-center">Login</h1>
             <form onSubmit={handleSubmit} className="space-y-6">
                 <div>
