@@ -67,7 +67,7 @@ console.log("userRole:", userRole);
 
   return (
     
-     <div className="min-h-screen w-full flex flex-col">
+     <div className="min-h-screen w-full flex flex-col overflow-hidden">
 
       <nav className="bg-gray-800 p-4 rounded-lg shadow-md mb-8">
         <ul className="flex items-center space-x-6 text-white" >
@@ -146,11 +146,7 @@ console.log("userRole:", userRole);
           <p className="text-gray-700 text-lg mb-6">
             Your personal learning assistant with AI-powered tools to help you learn, organize, and grow.
           </p>
-          <img 
-            src="https://cdn.pixabay.com/photo/2017/06/10/07/18/laptop-2381186_1280.png" 
-            alt="Learning" 
-            className="mx-auto max-w-xs md:max-w-sm rounded-lg shadow-md"
-          />
+          
         </div>
 
         {!isLoggedIn && (
