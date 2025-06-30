@@ -67,7 +67,7 @@ console.log("userRole:", userRole);
 
   return (
     
-     <div className="min-h-screen bg-gradient-to-r from-purple-500 via-pink-500 to-indigo-500 animate-gradient-x bg-[length:200%_200%] px-4 sm:px-6 lg:px-8 overflow-x-hidden">
+     <div className="min-h-screen w-full bg-gradient-to-r from-purple-500 via-pink-500 to-indigo-500 animate-gradient-x bg-[length:200%_200%]">
 
       <nav className="bg-gray-800 p-4 rounded-lg shadow-md mb-8">
         <ul className="flex items-center space-x-6 text-white" >
@@ -124,6 +124,7 @@ console.log("userRole:", userRole);
         <Route 
         path="/"
          element={
+           <Layout>
               <div className="relative overflow-hidden min-h-[80vh]">
       {/* 🔵 Floating Bubbles Background */}
       <div className="absolute inset-0 z-0 pointer-events-none">
@@ -137,6 +138,20 @@ console.log("userRole:", userRole);
         <h2 className="text-4xl font-extrabold text-center text-indigo-700 mb-4 animate-fade-in-up">
           🎓 Welcome to StudyFlow-AI 🚀!
         </h2>
+        {/* 💡 Hero Section */}
+        <div className="relative z-10 bg-white bg-opacity-90 p-8 rounded-xl shadow-2xl max-w-6xl mx-auto mt-12 text-center">
+          <h1 className="text-5xl font-extrabold text-indigo-700 mb-4 animate-fade-in-up">
+            🎓 StudyFlow-AI – Learn Smarter, Not Harder!
+          </h1>
+          <p className="text-gray-700 text-lg mb-6">
+            Your personal learning assistant with AI-powered tools to help you learn, organize, and grow.
+          </p>
+          <img 
+            src="https://cdn.pixabay.com/photo/2017/06/10/07/18/laptop-2381186_1280.png" 
+            alt="Learning" 
+            className="mx-auto max-w-xs md:max-w-sm rounded-lg shadow-md"
+          />
+        </div>
 
         {!isLoggedIn && (
           <p className="text-gray-700 text-center text-lg">
@@ -195,6 +210,7 @@ console.log("userRole:", userRole);
         )}
       </div>
     </div>
+    </Layout>
   }
 />
              
