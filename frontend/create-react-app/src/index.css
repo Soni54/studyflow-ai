@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 /* Global reset & layout styles */
-html, body {
+html, body, #root {
   margin: 0;
   padding: 0;
   min-height: 100%;
@@ -13,11 +13,6 @@ html, body {
 
 body {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  
-}
-
-/* Optional base theming */
-:root {
   font-weight: 400;
   line-height: 1.5;
   color: rgba(255, 255, 255, 0.87);
