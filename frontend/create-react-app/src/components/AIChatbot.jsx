@@ -132,7 +132,7 @@ const AIChatbot = () => {
                     onChange={(e) => setPrompt(e.target.value)}
                     placeholder="Ask your question..."
                     disabled={loading}
-                    className="flex-grow px-4 py-2 border border-gray-300 rounded-l-md focus:outline-none focus:ring-2 focus:ring-blue-400"
+                    className="flex-grow px-4 py-2 border border-gray-300 rounded-l-md text-black bg-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-400"
                 />
                 <button
                     type="button"

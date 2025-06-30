@@ -146,7 +146,13 @@ console.log("userRole:", userRole);
           <p className="text-gray-700 text-lg mb-6">
             Your personal learning assistant with AI-powered tools to help you learn, organize, and grow.
           </p>
-          
+          <div className="flex justify-center mt-6">
+  <img
+    src="/study-illustration.png" // <-- adjust this path based on your `public` folder
+    alt="Study Illustration"
+    className="w-full max-w-md h-auto rounded-lg shadow-lg"
+  />
+</div>
         </div>
 
         {!isLoggedIn && (

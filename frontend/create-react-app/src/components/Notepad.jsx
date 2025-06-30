@@ -67,14 +67,14 @@ const Notepad = () => {
         <input
           type="text"
           placeholder="Title"
-          className="w-full p-2 border rounded"
+          className="w-full p-2 border rounded text-black placeholder-gray-500"
           value={form.title}
           onChange={(e) => setForm({ ...form, title: e.target.value })}
           required
         />
         <textarea
           placeholder="Write your note here..."
-          className="w-full p-2 border rounded h-28"
+          className="w-full p-2 border rounded h-28 text-black bg-white placeholder-gray-500"
           value={form.content}
           onChange={(e) => setForm({ ...form, content: e.target.value })}
           required
